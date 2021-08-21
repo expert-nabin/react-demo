@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
+import UserInfo from './UserInfo';
+import users from './users';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  render() {
+   
+    let updatedUsers = users.map((item, index) => {
+      return { ...item, uniqueKey: index }
+    });
+
+    return (
+      <>
+      <h1>
+        Welcome to React Class
+      </h1>
+      <Button variant="primary"> Primary Button</Button>
+      
+      {
+        updatedUsers.map(item => <UserInfo showImage={false} key={item.uniqueKey} user={item} title="Github User"  />)
+      }
+
+      
+      </>
+      /**
+        Create a Button Componet in separate file and show that comonent within this comonent.
+       */
+    );
+  }
 }
 
 export default App;
