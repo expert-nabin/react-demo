@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ThemeContext from './themeContext';
 
 
 ReactDOM.render(
-    <App />
+  <ThemeContext.Provider value="light">
+    <App theme="light" />
+  </ThemeContext.Provider>
   ,
   document.getElementById('root')
 );

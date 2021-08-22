@@ -1,19 +1,29 @@
-function UserInfo(props) {
+import React, { useContext } from 'react';
+import ThemeContext from './themeContext';
+import theme from './theme.js';
+
+
+function UserInfo({user, showImage, title}) {
+    const currentTheme = useContext(ThemeContext);
     
+
+    function setAdmin(event, currentUser) {
+        console.log(`Set user ${currentUser.login} as admin`);
+    }
+
     return(
-        <>
+        <div onClick={(event) => setAdmin(event, user)} style={{backgroundColor: theme[currentTheme].backgroundColor  }} >
         {
-            (props.user.site_admin ? <span style={{color: 'red'}}>Site Admin</span> : '')
+            (user.site_admin ? <span style={{color: 'red'}}>Site Admin</span> : '')
         }
-            <h2>{props.user.login}</h2>
-            <p>{props.title}</p>
+            <h2>{user.login}</h2>
+            <p>{title}</p>
             {
-                props.showImage ? (<img src={props.user.avatar_url} alt="" width="200" />) : null
+                showImage ? (<img src={user.avatar_url} alt="" width="200" />) : null
             }
-                
             <div>
             </div>
-        </>
+        </div>
     );
 }
 
